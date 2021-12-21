@@ -47,7 +47,8 @@ const UsuarioSchema = Schema({
 //fuera de la misma, y yo necesito tener el this porqué va a hacer referencia
 //a la instancia que tengo creada
 UsuarioSchema.methods.toJSON = function() {
-    const { __v, password, ...user } = this.toObject();
+    const { __v, password, _id, ...user } = this.toObject();
+    user.uid = _id;
     return user;
 }
 
