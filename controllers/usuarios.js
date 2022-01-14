@@ -61,6 +61,7 @@ const usuariosPut = async(req, res) => {
     res.json({
         usuario
     });
+
 }
 
 const usuariosDelete = async(req, res) => {
