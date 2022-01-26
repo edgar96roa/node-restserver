@@ -2,7 +2,7 @@ node_modules/
 *.pdf
 .env
 
-/uploads/product/*
-/uploads/user/*
-!/uploads/product/.gitkeep
-!/uploads/user/.gitkeep
+/uploads/productos/*
+/uploads/usuarios/*
+!/uploads/productos/.gitkeep
+!/uploads/usuarios/.gitkeep
