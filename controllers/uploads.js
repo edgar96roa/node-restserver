@@ -105,25 +105,21 @@ const actualizarImagenCloudinary = async(req, res = response) => {
     }
 
     //limpiar imagenes previas
-    try {
-        if( model.image ) {
-            //borrar imagen del server
-            const nombreArr = model.image.split('/');
-            const nombre = nombreArr[ nombreArr.length -1 ];
-            const [ public_id ] = nombre.split('.');
-            cloudinary.uploader.destroy( public_id );
 
-            //subir nueva imagen
-            const { tempFilePath } = req.files.archivo;
-            const { secure_url } = await cloudinary.uploader.upload( tempFilePath );
-
-            model.image = secure_url;        
-            await model.save();
-            res.json( model );
-        }
-    } catch (error) {
-        return res.status(500).json({ msg: `Error interno del servidor ${ error }` });
+    if( model.image ) {
+        //borrar imagen del server
+        const nombreArr = model.image.split('/');
+        const nombre = nombreArr[ nombreArr.length - 1 ];
+        const [ public_id ] = nombre.split('.');
+        cloudinary.uploader.destroy( public_id );
     }
+    //subir nueva imagen
+    const { tempFilePath } = req.files.archivo;
+    const { secure_url } = await cloudinary.uploader.upload( tempFilePath );
+
+    model.image = secure_url;        
+    await model.save();
+    res.json( model );
     
 }
 
